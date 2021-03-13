@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --v: #000000;
+  --black1: #222;
+  --black2: #2d2d2d;
+  --black3: #3d3d3d;
+  --white1: #989898;
+  --white2: #afafaf;
+  --white3: #eee;
+  --contrast1: #d4d4d4;
+  --contrast2: #5c5c5c;
+}
+body[dark] {
+  --main-bg: var(--black2);
+  --bg: var(--black3);
+  --sidecolor: var(--white);
+  --mainfont: var(--white3);
+  --sidefont: var(--black3);
+  --contrast: var(--contrast2);
+  --link: #dff516;
+}
+body {
+  --main-bg: var(--white2);
+  --bg: var(--white3);
+  --sidecolor: var(--black3);
+  --mainfont: var(--black1);
+  --sidefont: var(--white2);
+  --contrast: var(--contrast1);
+  --link: blue;
+}
+a {
+  color: var(--link);
+}
+.colorchange {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: var(--bg);
+  cursor: pointer;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1.5em;
+  background-color: var(--main-bg);
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.headers > *:last-child {
+  margin-top: 0;
+}
+.headers > *:first-child {
+  margin-bottom: 0;
+}
+.headers > *:not(:first-child, :last-child) {
+  margin: 0;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+@media screen and (max-width:480px){
+  .container{
+    width: 100%;
+  }
+}
+#page1 {
+  background-color: var(--bg);
+  color: var(--mainfont);
+  --calcdim: calc(22vw + 25px);
+  /* For height of top level element and translateY of image */
+  --half: calc(var(--calcdim) / 2);
+}
+.pp {
+  max-height: 200px;
+  min-height: 130px;
+  height: --calcdim;
+  background-color: var(--contrast);
+}
+.pp > .image {
+  background-color: antiquewhite;
+  border-radius: 50%;
+  height: max(130px, var(--calcdim));
+  width: max(130px, var(--calcdim));
+  max-width: 200px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  transform: translateY(var(--half));
+  overflow: hidden;
+}
+.pp > .image > img {
+  height: inherit;
+  width: inherit;
+  max-height: 200px;
+  max-width: 200px;
+}
+.intro {
+  padding: calc(var(--half) - 20px) 0 0 0;
+}
+.skills > .skill.show {
+  height: auto;
+  animation: backwards yole;
+  animation-duration: 1s;
+  transition: all 1s;
+}
+.skills > .skill {
+  display: flex;
+  height: 0px;
+  animation: forwards yole;
+  animation-duration: 1s;
+  transition: all 1s;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: var(--contrast);
+}
+@keyframes yole {
+  0% {
+    height: 0px;
+  }
+  50% {
+    height: 0px;
+  }
+  100% {
+    height: 0px;
+  }
+}
+.skills > .links > div {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 30px 0;
+}
+.skills .progess {
+  position: relative;
+  margin: auto;
+  width: 3em;
+  height: 3em;
+  border: black solid 2px;
+  line-height: calc(3em - 4px);
+  overflow: hidden;
+  border-radius: 50%;
+  color: antiquewhite;
+}
+.skills .progess > .after {
+  --va: attr(progress);
+  content: "";
+  display: block;
+  position: absolute;
+  left: -1.5em;
+  top: 10px;
+  /* top: 0; */
+  height: calc(5em + 20px);
+  width: calc(5em + 10px);
+  transform: rotate(30deg);
+  transition: linear;
+  border-radius: 50%;
+  /* transform-origin: 0 -68px;  */
+  /* transform: rotate(30deg); */
+  animation: anim 5s infinite linear;
+  background-color: rgba(21, 21, 196, 0.308);
+  background: linear-gradient(0deg, red, blue);
+}
+.skills .progess > .before {
+  --va: attr(progress);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  position: absolute;
+  left: -1.5em;
+  top: 10px;
+  height: calc(5em + 30px);
+  width: calc(5em + 20px);
+  /* transform: translate(0,-68px); */
+  background-color: rgba(179, 83, 83, 0.473);
+  transition: linear;
+  transform: rotate(0deg);
+  animation: anima 2s infinite linear;
+  /* background-color: rgba(159, 159, 219, 0.192); */
+}
+.skills .progess > .data {
+  position: absolute;
+  align-self: center;
+  z-index: 10;
+  margin: 0 21px;
+}
+@keyframes anima {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes anim {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+button {
+  padding: 20px min(5vw,30px);
+  border-radius: 18px;
+  border: 0;
+  background-color: var(--main-bg);
+  background: linear-gradient(20deg, var(--main-bg), #0000);
+  color: var(--mainfont);
+  transition: 0.5s all;
+  font-size: 1em;
+}
+button:hover {
+  color: var(--sidecolor);
+  background-color: var(--contrast);
+}
